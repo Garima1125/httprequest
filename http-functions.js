@@ -1,6 +1,12 @@
+module.exports = function getHTML (options, callback) {
+    function getHTML (callback){
+  console.log(getHTML);
+}
+};
+
 var https = require('https'); 
 var args = process.argv.slice(2);
-function getAndPrintHTML(options){
+function PrintHTML(options, callback){
 
   var requestOptions = {
      host: args[0],
@@ -20,13 +26,10 @@ https.get(requestOptions, function (res) {
     rawData += chunk;
   });
 
-res.on('end', function() {
-  console.log(rawData);
+  res.on('end', function() {
+    callback(rawData);
    });
-
  });
  
 }
-getAndPrintHTML(args);
- 
-  
+PrintHTML(args, getHTML);
